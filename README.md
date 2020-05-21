@@ -15,4 +15,4 @@
 
   ### node 安装模块（express框架）
      
-     + npm install express express-static mysql  cookie-parser body-parser cookie-session consolidate ejs
+     + npm install express express-route express-static mysql multer cookie-parser body-parser cookie-session consolidate ejs

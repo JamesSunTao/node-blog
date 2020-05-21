@@ -10,7 +10,7 @@ const consolidate=require('consolidate');
 const expressRoute=require('express-route');
 
 var server=express();
-server.listen(8080);
+server.listen(8086);
 
 //1.获取请求数据
 //get自带

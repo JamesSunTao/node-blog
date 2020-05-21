@@ -49,8 +49,31 @@ module.exports=function (){
   });
 
   router.get('/banners', (req, res)=>{
-    res.render('admin/banners.ejs', {})
+    db.query('SELECT * FROM banner_table', (err, banners)=>{
+        if(err){
+          console.error(err);
+          res.status(500).send('database error').end();
+        }else{
+          res.render('admin/banners.ejs', {banners});
+        }
+      });
   });
-
+  router.post('/banners', (req, res)=>{
+    var title = req.body.title;
+    var description = req.body.description;
+    var href = req.body.href;
+    if(!title || !description || !href){
+        res.status(400).send('arg error').end();
+      }else{
+        db.query(`INSERT INTO banner_table (title, description, href) VALUE('${title}', '${description}', '${href}')`, (err, data)=>{
+            if (err) {
+                res.send('500').end()
+            }else{
+                res.redirect('?')
+            }
+        })
+      }
+    
+  });
   return router;
 };

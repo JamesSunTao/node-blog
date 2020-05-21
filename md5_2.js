@@ -1,6 +1,6 @@
 const common=require('./libs/common');
 
 var str='123456';
-var str=common.md5(str+'FDSW$t34tregt5tO&$(#RHuyoyiUYE*&OI$HRLuy87odlfh是个风格热腾腾)');
+var str=common.md5(str+'白日依山尽，黄河入海流');
 
 console.log(str);

@@ -1,5 +1,5 @@
 const express=require('express');
-const common=require('../libs/common');
+const common=require('../../libs/common');
 const mysql=require('mysql');
 
 var db=mysql.createPool({host: 'localhost', user: 'root', password: '123456', database: 'learn'});
@@ -48,32 +48,7 @@ module.exports=function (){
     res.render('admin/index.ejs', {});
   });
 
-  router.get('/banners', (req, res)=>{
-    db.query('SELECT * FROM banner_table', (err, banners)=>{
-        if(err){
-          console.error(err);
-          res.status(500).send('database error').end();
-        }else{
-          res.render('admin/banners.ejs', {banners});
-        }
-      });
-  });
-  router.post('/banners', (req, res)=>{
-    var title = req.body.title;
-    var description = req.body.description;
-    var href = req.body.href;
-    if(!title || !description || !href){
-        res.status(400).send('arg error').end();
-      }else{
-        db.query(`INSERT INTO banner_table (title, description, href) VALUE('${title}', '${description}', '${href}')`, (err, data)=>{
-            if (err) {
-                res.send('500').end()
-            }else{
-                res.redirect('?')
-            }
-        })
-      }
-    
-  });
+  router.use('/banners', require('./banners')());
+  router.use('/custom', require('./custom')());
   return router;
 };

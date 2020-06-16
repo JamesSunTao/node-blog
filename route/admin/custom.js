@@ -41,7 +41,7 @@ module.exports=function (){
         });
         break;
       case 'mod':
-        db.query(`SELECT * FROM custom_evaluation_table WHERE ID=${req.query.id}`, (err, data)=>{
+        db.query(`SELECT * FROM custom_evaluation_table WHERE ID=${req.query.id}`, (err,  data)=>{
           if(err){
             console.error(err);
             res.status(500).send('database error').end();
